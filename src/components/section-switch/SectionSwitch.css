@@ -1,0 +1,21 @@
+.section-switch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-inline-end: 1px solid #f0f8ff4f;
+  font-size: 0.8125rem;
+}
+
+.section-switch > a {
+  padding: 1rem;
+}
+
+.section-switch .selector {
+  position: absolute;
+  inset-inline-end: 0;
+  width: 3px;
+  height: 50px;
+  background-color: var(--colors-primary);
+  border-radius: 100vw;
+  transition: top 0.5s ease-in-out;
+}
