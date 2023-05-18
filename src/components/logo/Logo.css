@@ -1,0 +1,13 @@
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 2rem;
+  font-weight: var(--font-weights-bold);
+  letter-spacing: 5px;
+  line-height: 1;
+}
+
+.blinkit {
+  animation: blink 1.6s infinite;
+}
