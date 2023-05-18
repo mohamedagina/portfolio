@@ -19,3 +19,40 @@
   border-radius: 100vw;
   transition: top 0.5s ease-in-out;
 }
+
+.section-scroll {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  transform-origin: right bottom;
+  transform: rotate(-90deg) translateX(100%);
+  color: var(--colors-primary);
+  font-size: 1.25rem;
+}
+
+.scroll-arrow {
+  transition: transform var(--transitions-color);
+}
+
+.section-scroll:hover .scroll-arrow.up {
+  transform: translateX(0.5rem);
+}
+
+.section-scroll:hover .scroll-arrow.down {
+  transform: translateX(-0.5rem);
+}
+
+.section-scroll > span {
+  opacity: 0.4;
+  font-size: 0.8125rem;
+  letter-spacing: 1px;
+  line-height: 0.9;
+}
+
+@media (max-width: 992px) {
+  .section-switch,
+  .section-scroll {
+    display: none;
+  }
+}
