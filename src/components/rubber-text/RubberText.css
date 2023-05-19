@@ -1,0 +1,20 @@
+.rubber-text {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.35em;
+}
+.rubber-word {
+  white-space: nowrap;
+}
+
+.rubber-band {
+  transition: color var(--transitions-color);
+  display: inline-block;
+  cursor: default;
+}
+
+.rubber-band:hover {
+  color: var(--colors-link-primary);
+  animation: rubberBand 1s;
+}
