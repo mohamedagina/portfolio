@@ -1,12 +1,14 @@
 .app-header {
   --children-margin: 3.125rem;
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   background-color: var(--colors-bg);
+  z-index: 999;
 }
 
 @media (min-width: 992px) {

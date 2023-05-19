@@ -101,9 +101,20 @@ svg {
 }
 
 body {
-  font: 400 1rem 'Source Sans Pro', sans-serif;
+  font: var(--font-weights-regular) 1.125rem 'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--colors-bg);
   color: var(--colors-primary);
+  overflow-x: hidden;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--colors-secondary);
+  font-weight: var(--font-weights-semi-bold);
 }
 
 .section-full {
