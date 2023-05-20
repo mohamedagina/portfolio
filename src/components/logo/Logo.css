@@ -6,6 +6,7 @@
   font-weight: var(--font-weights-bold);
   letter-spacing: 5px;
   line-height: 1;
+  outline: none;
 }
 
 .blinkit {
