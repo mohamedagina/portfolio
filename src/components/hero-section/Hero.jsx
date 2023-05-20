@@ -10,10 +10,10 @@ import { HashLink } from 'react-router-hash-link';
 export const Hero = () => {
   return (
     <section id="home" className="hero-section">
-      <div className="section-content">
+      <div className="hero-content section-full">
         <ReactSVG src={pcImage} className="hero-image" />
         <div className="hero-description">
-          <h1>
+          <h1 className="main-heading">
             <RubberText text="Front-End Web Developer" />
           </h1>
 
@@ -29,7 +29,10 @@ export const Hero = () => {
         </div>
       </div>
 
-      <ReactSVG src={sectionDecoration} className="hero-decoration" />
+      <ReactSVG
+        src={sectionDecoration}
+        className="side-decoration decoration-left"
+      />
       <div className="side-dots">
         <img src={sideDots} alt="" />
       </div>
