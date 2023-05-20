@@ -1,5 +1,9 @@
 export { default as pcImage } from './pc.svg';
+export { default as myImage } from './profile-pic.png';
 export { default as appLogo } from './logo.svg';
 export { default as sectionDecoration } from './about-bg.svg';
+export { default as sectionDecoration2 } from './about-bg2.svg';
 export { default as sideDots } from './side-dots.png';
 export { default as purpleRomb } from './purple_romb1.png';
+export { default as purpleRomb2 } from './purple_romb2.png';
+export { default as darkCube } from './dark_cube1.png';

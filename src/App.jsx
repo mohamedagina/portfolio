@@ -1,10 +1,13 @@
-import { Hero, Header } from './components';
+import { Hero, Header, About } from './components';
 
 function App() {
   return (
     <>
       <Header />
-      <Hero />
+      <main>
+        <Hero />
+        <About />
+      </main>
     </>
   );
 }
