@@ -1,0 +1,54 @@
+.skills-section {
+  position: relative;
+}
+
+.skills-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.skills-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(700px, 100%);
+}
+
+.skills-slogan {
+  font-size: 0.9375rem;
+  color: var(--colors-primary);
+  opacity: 0.7;
+  font-weight: var(--font-weights-light);
+}
+
+.skills-logos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3.75rem;
+}
+
+.skill-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skill-logo > img {
+  width: 3.125rem;
+}
+
+@media (min-width: 768px) {
+  .skills-text {
+    align-self: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .skill-logo > img {
+    width: 4.375rem;
+  }
+}

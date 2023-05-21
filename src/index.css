@@ -117,8 +117,13 @@ body {
   font-weight: var(--font-weights-semi-bold);
 }
 
+.external-link {
+  color: var(--colors-link-primary);
+}
+
 .section-full {
   width: min(1440px, 100%);
+  min-height: 100vh;
   margin-inline: auto;
   padding: 3.125rem 1rem;
 }
@@ -163,11 +168,6 @@ body {
 
   .side-decoration.decoration-right {
     inset-inline-end: -650px;
-  }
-}
-@media (min-width: 992px) {
-  .section-full {
-    height: 100vh;
   }
 }
 
