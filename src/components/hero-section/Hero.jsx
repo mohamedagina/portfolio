@@ -23,7 +23,7 @@ export const Hero = () => {
             experiences.
           </p>
 
-          <HashLink to="/#about" className="nav-link">
+          <HashLink to="/#about" className="nav-link purple" smooth>
             About me <GoChevronRight />
           </HashLink>
         </div>

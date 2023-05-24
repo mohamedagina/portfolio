@@ -113,12 +113,15 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--colors-secondary);
   font-weight: var(--font-weights-semi-bold);
 }
 
-.external-link {
+.gold {
   color: var(--colors-link-primary);
+}
+
+.purple {
+  color: var(--colors-secondary);
 }
 
 .section-full {
@@ -168,6 +171,12 @@ body {
 
   .side-decoration.decoration-right {
     inset-inline-end: -650px;
+  }
+}
+
+@media (min-width: 992px) {
+  body {
+    overflow-y: hidden;
   }
 }
 

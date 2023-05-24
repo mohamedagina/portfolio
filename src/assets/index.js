@@ -1,5 +1,5 @@
 export { default as pcImage } from './pc.svg';
-export { default as myImage } from './profile-pic.png';
+export { default as myImage } from './profile-pic.webp';
 export { default as appLogo } from './logo.svg';
 export { default as sectionDecoration } from './about-bg.svg';
 export { default as sectionDecoration2 } from './about-bg2.svg';
@@ -7,3 +7,6 @@ export { default as sideDots } from './side-dots.png';
 export { default as purpleRomb } from './purple_romb1.png';
 export { default as purpleRomb2 } from './purple_romb2.png';
 export { default as darkCube } from './dark_cube1.png';
+export { default as sphereLG } from './sphere_lg.png';
+export { default as sphereMD } from './sphere_md.png';
+export { default as sphereSM } from './sphere_sm.png';

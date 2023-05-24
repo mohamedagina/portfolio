@@ -49,12 +49,17 @@ export const SectionSwitch = ({ sections }) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className="section-link"
+            smooth
           >
             {index <= 9 ? `0${index}` : index}
           </HashLink>
         ))}
       </div>
-      <HashLink to={`/#${sections[nextSection]}`} className="section-scroll">
+      <HashLink
+        to={`/#${sections[nextSection]}`}
+        className="section-scroll"
+        smooth
+      >
         {nextSection !== 0 ? (
           <>
             <GoChevronLeft className="scroll-arrow down" />{' '}

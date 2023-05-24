@@ -7,13 +7,13 @@ const sections = ['home', 'about', 'skills', 'portfolio', 'contact'];
 export const Header = () => (
   <header className="app-header">
     <div className="fixed-nav left-nav">
-      <HashLink to="#about">
+      <HashLink to="#about" smooth>
         <AppLogo />
       </HashLink>
     </div>
 
     <div className="fixed-nav right-nav">
-      <HashLink to="#contact" className="nav-btn">
+      <HashLink to="#contact" className="nav-btn" smooth>
         Contact
       </HashLink>
       <SectionSwitch sections={sections} />

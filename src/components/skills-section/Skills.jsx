@@ -39,7 +39,7 @@ export const Skills = () => {
               href="https://www.linkedin.com/in/mohamed-agina"
               target="_blank"
               rel="noreferrer noopener"
-              className="external-link"
+              className="gold"
             >
               Linkedin
             </a>{' '}

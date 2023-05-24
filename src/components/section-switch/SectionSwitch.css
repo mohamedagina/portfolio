@@ -8,6 +8,7 @@
 
 .section-switch > a {
   padding: 1rem;
+  margin-inline-end: 3px;
 }
 
 .section-switch .selector {
