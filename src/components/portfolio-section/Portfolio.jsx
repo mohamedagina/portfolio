@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 import { GoChevronRight } from 'react-icons/go';
 import { ReactSVG } from 'react-svg';
 
@@ -62,9 +62,9 @@ export const Portfolio = () => {
                 I have built various different projects to fit different aspects
                 of the client&apos;s business. If you want to see more examples
                 of my work than the ones showcased in this site, please{' '}
-                <HashLink to="/#contact" className="gold weight-md">
+                <Link to="/#contact" className="gold weight-md">
                   contact me!
-                </HashLink>
+                </Link>
               </p>
 
               <button

@@ -5,7 +5,7 @@ import { GoChevronRight } from 'react-icons/go';
 import { RubberText } from '../';
 
 import './Hero.css';
-import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   return (
@@ -23,9 +23,9 @@ export const Hero = () => {
             experiences.
           </p>
 
-          <HashLink to="/#about" className="nav-link purple" smooth>
+          <Link to="/#about" className="nav-link purple">
             About me <GoChevronRight />
-          </HashLink>
+          </Link>
         </div>
       </div>
 

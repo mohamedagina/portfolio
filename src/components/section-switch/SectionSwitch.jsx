@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
+import { useLocation, Link } from 'react-router-dom';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import './SectionSwitch.css';
 
@@ -43,23 +42,18 @@ export const SectionSwitch = ({ sections }) => {
           style={{ top: selectorOffset + 'px' }}
         ></div>
         {sections.map((section, index) => (
-          <HashLink
-            to={`#${section}`}
+          <Link
+            to={`/#${section}`}
             key={section}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className="section-link"
-            smooth
           >
             {index <= 9 ? `0${index}` : index}
-          </HashLink>
+          </Link>
         ))}
       </div>
-      <HashLink
-        to={`/#${sections[nextSection]}`}
-        className="section-scroll"
-        smooth
-      >
+      <Link to={`/#${sections[nextSection]}`} className="section-scroll">
         {nextSection !== 0 ? (
           <>
             <GoChevronLeft className="scroll-arrow down" />{' '}
@@ -71,7 +65,7 @@ export const SectionSwitch = ({ sections }) => {
             <GoChevronRight className="scroll-arrow up" />
           </>
         )}
-      </HashLink>
+      </Link>
     </>
   );
 };

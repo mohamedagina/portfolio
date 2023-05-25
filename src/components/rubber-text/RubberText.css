@@ -3,6 +3,7 @@
   align-items: center;
   flex-wrap: wrap;
   column-gap: 0.35em;
+  user-select: none;
 }
 .rubber-word {
   white-space: nowrap;

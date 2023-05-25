@@ -2,6 +2,7 @@
 ::after,
 ::before {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body,
@@ -108,9 +109,8 @@ body {
   color: var(--colors-primary);
 }
 
-#root {
+main {
   overflow: hidden;
-  height: auto;
 }
 
 .nav-link {
@@ -179,7 +179,7 @@ body {
 }
 
 @media (min-width: 992px) {
-  #root {
+  main {
     height: 100vh;
   }
 }
