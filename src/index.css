@@ -106,7 +106,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--colors-bg);
   color: var(--colors-primary);
-  overflow-x: hidden;
+}
+
+#root {
+  overflow: hidden;
+  height: auto;
 }
 
 .nav-link {
@@ -175,8 +179,8 @@ body {
 }
 
 @media (min-width: 992px) {
-  body {
-    overflow-y: hidden;
+  #root {
+    height: 100vh;
   }
 }
 
