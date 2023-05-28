@@ -2,14 +2,13 @@ import { ReactSVG } from 'react-svg';
 import { pcImage, sectionDecoration, sideDots, purpleRomb } from '../../assets';
 import { GoChevronRight } from 'react-icons/go';
 
-import { RubberText } from '../';
+import { RubberText, HashLink, Section } from '../';
 
 import './Hero.css';
-import { Link } from 'react-router-dom';
 
 export const Hero = () => {
   return (
-    <section id="home" className="hero-section">
+    <Section id="home" className="hero-section">
       <div className="hero-content section-full">
         <ReactSVG src={pcImage} className="hero-image" />
         <div className="hero-description">
@@ -23,9 +22,9 @@ export const Hero = () => {
             experiences.
           </p>
 
-          <Link to="/#about" className="nav-link purple">
+          <HashLink to="#about" className="nav-link purple">
             About me <GoChevronRight />
-          </Link>
+          </HashLink>
         </div>
       </div>
 
@@ -40,6 +39,6 @@ export const Hero = () => {
       <div className="purple-romb">
         <img src={purpleRomb} alt="" />
       </div>
-    </section>
+    </Section>
   );
 };

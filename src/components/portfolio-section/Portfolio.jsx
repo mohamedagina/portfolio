@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { GoChevronRight } from 'react-icons/go';
 import { ReactSVG } from 'react-svg';
 
-import { RubberText } from '../';
+import { RubberText, HashLink, Section } from '../';
 import './Portfolio.css';
 
 import { sectionDecoration2, sphereLG, sphereMD, sphereSM } from '../../assets';
@@ -35,23 +34,29 @@ const projects = [
 
 export const Portfolio = () => {
   const [projectInView, setProjectInView] = useState(0);
-  const portfolioEl = useRef();
+  const slidesEl = useRef();
 
   useEffect(() => {
-    if (!portfolioEl.current) return;
+    if (!slidesEl.current) return;
 
-    portfolioEl.current.setAttribute(
-      'style',
-      `transform: translateX(-${
-        projectInView * portfolioEl.current.clientWidth
-      }px)`
-    );
+    const viewProject = () =>
+      slidesEl.current.setAttribute(
+        'style',
+        `transform: translateX(-${
+          projectInView * slidesEl.current.clientWidth
+        }px)`
+      );
+    viewProject();
+
+    window.addEventListener('resize', viewProject);
+
+    return () => window.removeEventListener('resize', viewProject);
   }, [projectInView]);
 
   return (
-    <section id="portfolio" className="portfolio-section">
+    <Section id="portfolio" className="portfolio-section">
       <div className="section-full portfolio-wrapper">
-        <div ref={portfolioEl} className="portfolio-content">
+        <div ref={slidesEl} className="portfolio-content">
           <div className="portfolio-slide">
             <div className="portfolio-summary">
               <h2 className="portfolio-heading">
@@ -62,9 +67,9 @@ export const Portfolio = () => {
                 I have built various different projects to fit different aspects
                 of the client&apos;s business. If you want to see more examples
                 of my work than the ones showcased in this site, please{' '}
-                <Link to="/#contact" className="gold weight-md">
+                <HashLink to="#contact" className="gold weight-md">
                   contact me!
-                </Link>
+                </HashLink>
               </p>
 
               <button
@@ -170,6 +175,6 @@ export const Portfolio = () => {
         src={sectionDecoration2}
         className="side-decoration decoration-right"
       />
-    </section>
+    </Section>
   );
 };

@@ -1,12 +1,21 @@
 import { useRef, useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import './SectionSwitch.css';
+
+import { useSelector } from 'react-redux';
+
+import { HashLink } from '../';
 
 export const SectionSwitch = ({ sections }) => {
   const [selectorOffset, setSelectorOffset] = useState(0);
   const [nextSection, setNextSection] = useState(1);
   const { hash: activeSection } = useLocation();
+  const [currentSection, setCurrentSection] = useState(
+    activeSection.substring(1)
+  );
+  const windowWidth = useSelector(state => state.windowWidth);
+  const navigate = useNavigate();
   const selectorEl = useRef();
   const switchEl = useRef();
 
@@ -26,6 +35,81 @@ export const SectionSwitch = ({ sections }) => {
     setNextSection(next);
   }, [activeSection, sections]);
 
+  useEffect(() => {
+    if (windowWidth < 992) return;
+
+    const mainEl = document.querySelector('main');
+    let isScrolling = false;
+    let timeoutID = '';
+    const handleScroll = e => {
+      if (!e.deltaY || isScrolling) return;
+
+      const currentIndex = sections.indexOf(currentSection);
+      let nextIndex = 0;
+      if (e.deltaY > 0)
+        nextIndex =
+          currentIndex === sections.length - 1
+            ? currentIndex
+            : currentIndex === -1
+            ? 1
+            : currentIndex + 1;
+      else nextIndex = currentIndex < 1 ? 0 : currentIndex - 1;
+
+      if (nextIndex !== currentIndex) {
+        isScrolling = true;
+        mainEl.setAttribute(
+          'style',
+          `transform: translateY(-${nextIndex * window.innerHeight}px)`
+        );
+        navigate(`/#${sections[nextIndex]}`);
+        timeoutID = setTimeout(() => {
+          isScrolling = false;
+          setCurrentSection(sections[nextIndex]);
+        }, 1200);
+      }
+    };
+
+    document.addEventListener('wheel', handleScroll);
+
+    return () => {
+      clearTimeout(timeoutID);
+      document.removeEventListener('wheel', handleScroll);
+    };
+  }, [navigate, currentSection, sections, windowWidth]);
+
+  useEffect(() => {
+    const viewSection = () => {
+      const mainEl = document.querySelector('main');
+
+      if (window.innerWidth < 992) {
+        mainEl.setAttribute('style', `transform: translateY(0);`);
+
+        if (!activeSection) return;
+
+        setCurrentSection(activeSection.substring(1));
+        const sectionInView = document.querySelector(activeSection);
+
+        if (sectionInView)
+          sectionInView.scrollIntoView({
+            block: 'nearest',
+            inline: 'start'
+          });
+
+        return;
+      }
+      const currentIndex = sections.indexOf(activeSection.substring(1));
+      mainEl.setAttribute(
+        'style',
+        `transform: translateY(-${currentIndex * window.innerHeight}px)`
+      );
+    };
+
+    viewSection();
+
+    window.addEventListener('resize', viewSection);
+    return () => window.removeEventListener('resize', viewSection);
+  }, [activeSection, sections]);
+
   const handleMouseEnter = e => {
     selectorEl.current.style.top = e.target.offsetTop + 'px';
   };
@@ -42,18 +126,18 @@ export const SectionSwitch = ({ sections }) => {
           style={{ top: selectorOffset + 'px' }}
         ></div>
         {sections.map((section, index) => (
-          <Link
-            to={`/#${section}`}
+          <HashLink
+            to={`#${section}`}
             key={section}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className="section-link"
           >
             {index <= 9 ? `0${index}` : index}
-          </Link>
+          </HashLink>
         ))}
       </div>
-      <Link to={`/#${sections[nextSection]}`} className="section-scroll">
+      <HashLink to={`#${sections[nextSection]}`} className="section-scroll">
         {nextSection !== 0 ? (
           <>
             <GoChevronLeft className="scroll-arrow down" />{' '}
@@ -65,7 +149,7 @@ export const SectionSwitch = ({ sections }) => {
             <GoChevronRight className="scroll-arrow up" />
           </>
         )}
-      </Link>
+      </HashLink>
     </>
   );
 };

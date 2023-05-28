@@ -3,6 +3,7 @@ import { RubberText } from '../';
 import { sectionDecoration } from '../../assets';
 
 import { ReactSVG } from 'react-svg';
+import { Section } from '../';
 
 const skills = [
   { id: 1, title: 'JavaScript', logo: './assets/js.svg' },
@@ -14,7 +15,7 @@ const skills = [
 ];
 export const Skills = () => {
   return (
-    <section id="skills" className="skills-section">
+    <Section id="skills" className="skills-section">
       <div className="section-full skills-content">
         <div className="skills-text">
           <span className="skills-slogan">
@@ -61,6 +62,6 @@ export const Skills = () => {
         src={sectionDecoration}
         className="side-decoration decoration-left"
       />
-    </section>
+    </Section>
   );
 };

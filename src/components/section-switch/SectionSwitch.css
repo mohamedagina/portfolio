@@ -1,9 +1,11 @@
 .section-switch {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   border-inline-end: 1px solid #f0f8ff4f;
   font-size: 0.8125rem;
+  opacity: 0;
+  inset-inline-end: 10000px;
 }
 
 .section-switch > a {
@@ -22,6 +24,7 @@
 }
 
 .section-scroll {
+  position: absolute;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -30,6 +33,9 @@
   transform: rotate(-90deg) translateX(100%);
   color: var(--colors-primary);
   font-size: 1.25rem;
+  opacity: 0;
+  z-index: -999;
+  inset-inline-end: 10000px;
 }
 
 .scroll-arrow {
@@ -51,9 +57,11 @@
   line-height: 0.9;
 }
 
-@media (max-width: 992px) {
+@media (min-width: 992px) {
   .section-switch,
   .section-scroll {
-    display: none;
+    position: relative;
+    opacity: 1;
+    inset-inline-end: 0;
   }
 }

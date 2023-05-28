@@ -1,21 +1,19 @@
 import './Header.css';
-import { AppLogo } from '../';
-import { Link } from 'react-router-dom';
+import { AppLogo, HashLink } from '../';
 import { SectionSwitch } from '../section-switch/SectionSwitch';
 
-const sections = ['home', 'about', 'skills', 'portfolio', 'contact'];
-export const Header = () => (
+export const Header = ({ sections }) => (
   <header className="app-header">
     <div className="fixed-nav left-nav">
-      <Link to="/#about">
+      <HashLink to="/#about">
         <AppLogo />
-      </Link>
+      </HashLink>
     </div>
 
     <div className="fixed-nav right-nav">
-      <Link to="/#contact" className="nav-btn">
+      <HashLink to="#contact" className="nav-btn">
         Contact
-      </Link>
+      </HashLink>
       <SectionSwitch sections={sections} />
     </div>
   </header>

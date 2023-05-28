@@ -1,26 +1,25 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Hero, Header, About, Skills, Portfolio } from './components';
 
+import { useDispatch } from 'react-redux';
+import { updateWindowWidth } from './store';
+
+const sections = ['home', 'about', 'skills', 'portfolio'];
 function App() {
-  const { hash: sectionID, key } = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!sectionID) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
+    const handleResize = () => {
+      dispatch(updateWindowWidth(window.innerWidth));
+    };
 
-    const sectionInView = document.querySelector(sectionID);
-    if (sectionInView)
-      sectionInView.scrollIntoView({
-        block: 'nearest',
-        inline: 'start'
-      });
-  }, [key, sectionID]);
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, [dispatch]);
   return (
     <>
-      <Header />
+      <Header sections={sections} />
       <main>
         <Hero />
         <About />

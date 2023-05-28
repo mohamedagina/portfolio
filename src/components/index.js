@@ -5,3 +5,5 @@ export { Portfolio } from './portfolio-section/Portfolio';
 export { RubberText } from './rubber-text/RubberText';
 export { AppLogo } from './logo/Logo';
 export { Header } from './header/Header';
+export { HashLink } from './HashLink.jsx';
+export { Section } from './Section.jsx';

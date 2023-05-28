@@ -1,5 +1,5 @@
 import './About.css';
-import { RubberText } from '../';
+import { RubberText, Section } from '../';
 import {
   myImage,
   purpleRomb2,
@@ -21,7 +21,7 @@ const aboutMe = [
 ];
 export const About = () => {
   return (
-    <section id="about" className="about-section">
+    <Section id="about" className="about-section">
       <div className="about-content section-full">
         <div className="column">
           <h2 className="main-heading">
@@ -49,6 +49,6 @@ export const About = () => {
           className="side-decoration decoration-right"
         />
       </div>
-    </section>
+    </Section>
   );
 };
