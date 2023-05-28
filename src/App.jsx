@@ -2,13 +2,14 @@ import { useEffect } from 'react';
 import { Hero, Header, About, Skills, Portfolio } from './components';
 
 import { useDispatch } from 'react-redux';
-import { updateWindowWidth } from './store';
+import { updateWindowWidth, setInView } from './store';
 
 const sections = ['home', 'about', 'skills', 'portfolio'];
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setInView(window.location.hash.substring(1)));
     const handleResize = () => {
       dispatch(updateWindowWidth(window.innerWidth));
     };

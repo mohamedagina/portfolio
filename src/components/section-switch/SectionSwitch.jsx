@@ -3,18 +3,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import './SectionSwitch.css';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setInView } from '../../store';
 
 import { HashLink } from '../';
 
 export const SectionSwitch = ({ sections }) => {
+  const dispatch = useDispatch();
+
   const [selectorOffset, setSelectorOffset] = useState(0);
   const [nextSection, setNextSection] = useState(1);
   const { hash: activeSection } = useLocation();
-  const [currentSection, setCurrentSection] = useState(
-    activeSection.substring(1)
-  );
-  const windowWidth = useSelector(state => state.windowWidth);
+
+  const { windowWidth, inView: currentSection } = useSelector(state => state);
   const navigate = useNavigate();
   const selectorEl = useRef();
   const switchEl = useRef();
@@ -64,7 +65,7 @@ export const SectionSwitch = ({ sections }) => {
         navigate(`/#${sections[nextIndex]}`);
         timeoutID = setTimeout(() => {
           isScrolling = false;
-          setCurrentSection(sections[nextIndex]);
+          dispatch(setInView(sections[nextIndex]));
         }, 1200);
       }
     };
@@ -86,7 +87,7 @@ export const SectionSwitch = ({ sections }) => {
 
         if (!activeSection) return;
 
-        setCurrentSection(activeSection.substring(1));
+        dispatch(setInView(activeSection.substring(1)));
         const sectionInView = document.querySelector(activeSection);
 
         if (sectionInView)
@@ -108,7 +109,7 @@ export const SectionSwitch = ({ sections }) => {
 
     window.addEventListener('resize', viewSection);
     return () => window.removeEventListener('resize', viewSection);
-  }, [activeSection, sections]);
+  }, [activeSection, sections, dispatch]);
 
   const handleMouseEnter = e => {
     selectorEl.current.style.top = e.target.offsetTop + 'px';
