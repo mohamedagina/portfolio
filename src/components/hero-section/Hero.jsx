@@ -8,7 +8,7 @@ import './Hero.css';
 
 export const Hero = () => {
   return (
-    <Section id="home" className="hero-section">
+    <Section id="home">
       <div className="hero-content section-full">
         <ReactSVG src={pcImage} className="hero-image" />
         <div className="hero-description">

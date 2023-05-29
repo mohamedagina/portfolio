@@ -21,7 +21,7 @@ const aboutMe = [
 ];
 export const About = () => {
   return (
-    <Section id="about" className="about-section">
+    <Section id="about">
       <div className="about-content section-full">
         <div className="column">
           <h2 className="main-heading">

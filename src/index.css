@@ -113,6 +113,10 @@ body {
   overflow: hidden;
 }
 
+section {
+  position: relative;
+}
+
 .nav-link {
   display: flex;
   align-items: center;

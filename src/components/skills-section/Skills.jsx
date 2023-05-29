@@ -15,7 +15,7 @@ const skills = [
 ];
 export const Skills = () => {
   return (
-    <Section id="skills" className="skills-section">
+    <Section id="skills">
       <div className="section-full skills-content">
         <div className="skills-text">
           <span className="skills-slogan">
