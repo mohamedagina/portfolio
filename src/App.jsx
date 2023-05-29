@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { Hero, Header, About, Skills, Portfolio } from './components';
+import { Hero, Header, About, Skills, Portfolio, Contact } from './components';
 
 import { useDispatch } from 'react-redux';
 import { updateWindowWidth, setInView } from './store';
 
-const sections = ['home', 'about', 'skills', 'portfolio'];
+const sections = ['home', 'about', 'skills', 'portfolio', 'contact'];
 function App() {
   const dispatch = useDispatch();
 
@@ -25,7 +25,8 @@ function App() {
         <Hero />
         <About />
         <Skills />
-        <Portfolio />
+        <Portfolio sections={sections} />
+        <Contact />
       </main>
     </>
   );

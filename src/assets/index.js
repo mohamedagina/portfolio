@@ -10,3 +10,4 @@ export { default as darkCube } from './dark_cube1.png';
 export { default as sphereLG } from './sphere_lg.png';
 export { default as sphereMD } from './sphere_md.png';
 export { default as sphereSM } from './sphere_sm.png';
+export { default as mapImg } from './map.jpg';

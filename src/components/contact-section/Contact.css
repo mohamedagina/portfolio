@@ -1,0 +1,44 @@
+.contact-content {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  gap: 1rem;
+}
+
+.contact-info > p {
+  width: min(330px, 100%);
+}
+
+.contact-mail {
+  font-size: 1.25rem;
+  font-weight: var(--font-weights-bold);
+  transition: color var(--transitions-color);
+}
+
+.contact-mail:hover {
+  color: var(--colors-link-primary);
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 550px) {
+  .contact-mail {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .contact-content {
+    flex-direction: row;
+    padding-inline-end: 5rem !important;
+  }
+}
