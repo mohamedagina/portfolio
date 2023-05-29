@@ -37,7 +37,7 @@ export const SectionSwitch = ({ sections }) => {
   }, [activeSection, sections]);
 
   useEffect(() => {
-    if (windowWidth < 992) return;
+    if (windowWidth < 992 || currentSection === 'portfolio') return;
 
     const mainEl = document.querySelector('main');
     let isScrolling = false;
@@ -76,7 +76,7 @@ export const SectionSwitch = ({ sections }) => {
       clearTimeout(timeoutID);
       document.removeEventListener('wheel', handleScroll);
     };
-  }, [navigate, currentSection, sections, windowWidth]);
+  }, [navigate, currentSection, sections, windowWidth, dispatch]);
 
   useEffect(() => {
     const viewSection = () => {
