@@ -157,7 +157,7 @@ export const Portfolio = ({ sections }) => {
                 <div>
                   <div className="project-category">{project.category}</div>
                   <h3 className="project-title main-heading">
-                    {project.title}
+                    <RubberText text={project.title} />
                   </h3>
                 </div>
 
