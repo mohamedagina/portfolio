@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from 'react';
 import { GoChevronRight } from 'react-icons/go';
 import { ReactSVG } from 'react-svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { setInView } from '../../store';
-import { useNavigate } from 'react-router-dom';
+import { setIsScrolling } from '../../store';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { RubberText, HashLink, Section } from '../';
 import './Portfolio.css';
@@ -37,82 +37,61 @@ const projects = [
 
 export const Portfolio = ({ sections }) => {
   const [projectInView, setProjectInView] = useState(0);
-  const { inView, windowWidth } = useSelector(state => ({
-    inView: state.inView === 'portfolio',
-    windowWidth: state.windowWidth
-  }));
+  const { isScrolling } = useSelector(state => state);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { hash: sectionInView } = useLocation();
 
   const slidesEl = useRef();
-  const isBoundarySlide = useRef();
 
   useEffect(() => {
     if (!slidesEl.current) return;
-
-    const viewProject = () =>
+    let timeout = '';
+    const viewProject = () => {
       slidesEl.current.setAttribute(
         'style',
         `transform: translateX(-${
           projectInView * slidesEl.current.clientWidth
         }px)`
       );
-    viewProject();
 
-    if (projectInView === 0) isBoundarySlide.current = 'first';
-    else if (projectInView === projects.length)
-      isBoundarySlide.current = 'last';
-    else isBoundarySlide.current = '';
+      dispatch(setIsScrolling(true));
+      timeout = setTimeout(() => {
+        dispatch(setIsScrolling(false));
+      }, 1200);
+    };
+    viewProject();
 
     window.addEventListener('resize', viewProject);
 
-    return () => window.removeEventListener('resize', viewProject);
-  }, [projectInView]);
+    return () => {
+      window.removeEventListener('resize', viewProject);
+      clearTimeout(timeout);
+    };
+  }, [projectInView, dispatch]);
 
   useEffect(() => {
-    if (!inView || windowWidth < 992) return;
+    const inView = sectionInView === '#portfolio';
+    if (!inView || isScrolling || window.innerWidth < 992) return;
 
-    let timeout = '';
-    let isScrolling = false;
     const handler = e => {
-      if (isScrolling) return;
-      let nextSection = 0;
-      if (e.deltaY > 0) {
-        if (isBoundarySlide.current !== 'last')
-          setProjectInView(current => current + 1);
-        else nextSection = sections.indexOf('portfolio') + 1;
-      }
-      if (e.deltaY < 0) {
-        if (isBoundarySlide.current !== 'first')
-          setProjectInView(current => current - 1);
-        else nextSection = sections.indexOf('portfolio') - 1;
-      }
-      if (nextSection > 0) {
-        document
-          .querySelector('main')
-          .setAttribute(
-            'style',
-            `transform: translateY(-${nextSection * window.innerHeight}px)`
-          );
+      const direction = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
+      const shouldGoX =
+        projectInView + direction >= 0 &&
+        projectInView + direction <= projects.length;
+
+      if (shouldGoX) {
+        setProjectInView(current => current + direction);
+      } else {
+        const nextSection = sections.indexOf('portfolio') + direction;
         navigate(`/#${sections[nextSection]}`);
       }
-
-      isScrolling = true;
-      timeout = setTimeout(() => {
-        isScrolling = false;
-        if (nextSection > 0) {
-          dispatch(setInView(sections[nextSection]));
-        }
-      }, 1200);
     };
 
     window.addEventListener('wheel', handler);
-    return () => {
-      clearTimeout(timeout);
-      window.removeEventListener('wheel', handler);
-    };
-  }, [inView, windowWidth, dispatch, sections, navigate]);
+    return () => window.removeEventListener('wheel', handler);
+  }, [sections, navigate, isScrolling, sectionInView, projectInView]);
 
   return (
     <Section id="portfolio">

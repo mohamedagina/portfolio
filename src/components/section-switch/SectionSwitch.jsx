@@ -3,19 +3,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go';
 import './SectionSwitch.css';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { setInView } from '../../store';
+import { useSelector } from 'react-redux';
 
 import { HashLink } from '../';
 
 export const SectionSwitch = ({ sections }) => {
-  const dispatch = useDispatch();
-
   const [selectorOffset, setSelectorOffset] = useState(0);
   const [nextSection, setNextSection] = useState(1);
   const { hash: activeSection } = useLocation();
 
-  const { windowWidth, inView: currentSection } = useSelector(state => state);
+  const { windowWidth, isScrolling } = useSelector(state => state);
   const navigate = useNavigate();
   const selectorEl = useRef();
   const switchEl = useRef();
@@ -37,15 +34,12 @@ export const SectionSwitch = ({ sections }) => {
   }, [activeSection, sections]);
 
   useEffect(() => {
-    if (windowWidth < 992 || currentSection === 'portfolio') return;
+    if (windowWidth < 992 || activeSection === '#portfolio') return;
 
-    const mainEl = document.querySelector('main');
-    let isScrolling = false;
-    let timeoutID = '';
     const handleScroll = e => {
       if (!e.deltaY || isScrolling) return;
 
-      const currentIndex = sections.indexOf(currentSection);
+      const currentIndex = sections.indexOf(activeSection.substring(1));
       let nextIndex = 0;
       if (e.deltaY > 0)
         nextIndex =
@@ -56,60 +50,13 @@ export const SectionSwitch = ({ sections }) => {
             : currentIndex + 1;
       else nextIndex = currentIndex < 1 ? 0 : currentIndex - 1;
 
-      if (nextIndex !== currentIndex) {
-        isScrolling = true;
-        mainEl.setAttribute(
-          'style',
-          `transform: translateY(-${nextIndex * window.innerHeight}px)`
-        );
-        navigate(`/#${sections[nextIndex]}`);
-        timeoutID = setTimeout(() => {
-          isScrolling = false;
-          dispatch(setInView(sections[nextIndex]));
-        }, 1200);
-      }
+      if (nextIndex !== currentIndex) navigate(`/#${sections[nextIndex]}`);
     };
 
     document.addEventListener('wheel', handleScroll);
 
-    return () => {
-      clearTimeout(timeoutID);
-      document.removeEventListener('wheel', handleScroll);
-    };
-  }, [navigate, currentSection, sections, windowWidth, dispatch]);
-
-  useEffect(() => {
-    const viewSection = () => {
-      const mainEl = document.querySelector('main');
-
-      if (window.innerWidth < 992) {
-        mainEl.setAttribute('style', `transform: translateY(0);`);
-
-        if (!activeSection) return;
-
-        dispatch(setInView(activeSection.substring(1)));
-        const sectionInView = document.querySelector(activeSection);
-
-        if (sectionInView)
-          sectionInView.scrollIntoView({
-            block: 'nearest',
-            inline: 'start'
-          });
-
-        return;
-      }
-      const currentIndex = sections.indexOf(activeSection.substring(1));
-      mainEl.setAttribute(
-        'style',
-        `transform: translateY(-${currentIndex * window.innerHeight}px)`
-      );
-    };
-
-    viewSection();
-
-    window.addEventListener('resize', viewSection);
-    return () => window.removeEventListener('resize', viewSection);
-  }, [activeSection, sections, dispatch]);
+    return () => document.removeEventListener('wheel', handleScroll);
+  }, [navigate, activeSection, sections, windowWidth, isScrolling]);
 
   const handleMouseEnter = e => {
     selectorEl.current.style.top = e.target.offsetTop + 'px';

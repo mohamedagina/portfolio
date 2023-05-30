@@ -1,26 +1,20 @@
 import { Link } from 'react-router-dom';
-
-import { useDispatch } from 'react-redux';
-import { setInView } from '../store';
+import { useSelector } from 'react-redux';
 
 export const HashLink = props => {
-  const dispatch = useDispatch();
+  const isScrolling = useSelector(state => state.isScrolling);
+  const handleNavigate = e => {
+    if (isScrolling) {
+      e.preventDefault();
+      return;
+    }
 
-  const scrollIntoView = () => {
-    const target = document.querySelector(props.to);
-    if (!target) return;
-
-    if (window.innerWidth < 992) {
-      target.scrollIntoView({
+    if (window.innerWidth < 992)
+      document.querySelector(props.to)?.scrollIntoView({
         block: 'nearest',
         inline: 'start'
       });
-    } else {
-      document
-        .querySelector('main')
-        .setAttribute('style', `transform: translateY(-${target.offsetTop}px)`);
-      dispatch(setInView(props.to.substring(1)));
-    }
   };
-  return <Link {...props} onClick={scrollIntoView} />;
+
+  return <Link {...props} onClick={handleNavigate} />;
 };
