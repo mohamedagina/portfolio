@@ -12,26 +12,59 @@ import { sectionDecoration2, sphereLG, sphereMD, sphereSM } from '../../assets';
 
 const projects = [
   {
+    id: '1',
+    title: 'Archrete',
+    description: 'Online portfolio for real estate company',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'React'],
+    demo: 'https://archrete-mohamedagina.vercel.app/',
+    img: './assets/macbook-archrete.webp',
+    category: 'Enterprise portfolio',
+    icon: './assets/archrete.svg'
+  },
+  {
+    id: '2',
+    title: 'Al-Khalijia',
+    description: 'Online portfolio for real estate company',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'React'],
+    demo: 'https://khalijia-company-mohamedagina.vercel.app/',
+    img: './assets/macbook-khalijia.webp',
+    category: 'Enterprise portfolio',
+    icon: './assets/khalijia.svg'
+  },
+  {
+    id: '3',
+    title: 'Todo App',
+    description:
+      'This is a solution to the Todo app challenge on Frontend Mentor',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'React', 'react-beautiful-dnd'],
+    demo: 'https://todo-app-mohamedagina.vercel.app/',
+    code: 'https://github.com/mohamedagina/Todo-app',
+    img: './assets/macbook-todo.png',
+    category: 'Frontend challenge',
+    icon: './assets/todo.png'
+  },
+  {
+    id: '4',
+    title: 'Tip calculator',
+    description:
+      'This is a solution to the Tip calculator app challenge on Frontend Mentor',
+    technologies: ['HTML', 'CSS', 'JavaScript'],
+    demo: 'https://tip-calculator-mohamedagina.vercel.app/',
+    code: 'https://github.com/mohamedagina/tip-calculator',
+    img: './assets/macbook-tip.png',
+    category: 'Frontend challenge',
+    icon: './assets/tip.svg'
+  },
+  {
     id: '0',
     title: 'Portfolio',
     description: 'Online portfolio for frontend developer',
     technologies: ['HTML', 'CSS', 'JavaScript', 'React'],
     demo: 'https://portfolio-mohamedagina.vercel.app/',
     code: 'https://github.com/mohamedagina/portfolio',
-    img: './assets/macbook-portfolio.png',
+    img: './assets/macbook-portfolio.webp',
     category: 'Personal portfolio',
     icon: './assets/logo.svg'
-  },
-
-  {
-    id: '1',
-    title: 'Archrete',
-    description: 'Online portfolio for real estate company',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'React'],
-    demo: 'https://archrete-mohamedagina.vercel.app/',
-    img: './assets/macbook-archrete.png',
-    category: 'Enterprise portfolio',
-    icon: './assets/archrete.svg'
   }
 ];
 
